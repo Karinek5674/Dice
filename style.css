@@ -18,10 +18,11 @@ body {
 }
 
 .hracova-tlacitka button {
+	font-weight: 500;
 	background-color: black;
 	color: #806600;
 	border: none;
-	padding: 0.8em;
+	padding: 1em;
 	border-radius: 6px;
 	transition: 160ms;
 	cursor: pointer;
@@ -29,10 +30,6 @@ body {
 
 .hracova-tlacitka button:hover {
 	scale: 107%;
-}
-
-.hracova-tlacitka button:active {
-	background-color: #0d0d0d;
 }
 
 .hracovy-kostky {
@@ -50,7 +47,7 @@ body {
 }
 
 .hracovy-kostky img:hover {
-	scale: 106%;
+	scale: 107%;
 }
 
 .pocitacova-strana {
