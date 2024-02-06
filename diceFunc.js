@@ -21,3 +21,12 @@ function priradHodnotuKostkam() {
 	}
 }
 
+//Tlačítko na hod kostkami, priradi hodnotu kostkam a dle nich šsi pak hrac vybere 
+let hracuvTah = false;
+
+const rollButton = document.querySelector('.js-roll')
+hracuvTah = true;
+rollButton.addEventListener('click', () =>{
+	priradHodnotuKostkam();
+	console.log(kostky) //array s kostkama
+})

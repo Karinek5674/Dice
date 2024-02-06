@@ -1,0 +1,58 @@
+body {
+	display: flex;
+	justify-content: space-between;
+	background-color: #1f1f1f;
+	margin: 2em;
+	height: 100vh;
+}
+
+.hracova-strana {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+}
+
+.hracova-tlacitka {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.hracova-tlacitka button {
+	background-color: black;
+	color: #806600;
+	border: none;
+	padding: 0.8em;
+	border-radius: 6px;
+	transition: 160ms;
+	cursor: pointer;
+}
+
+.hracova-tlacitka button:hover {
+	scale: 107%;
+}
+
+.hracova-tlacitka button:active {
+	background-color: #0d0d0d;
+}
+
+.hracovy-kostky {
+	margin-top: 2.4rem;
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	grid-template-rows: 10rem 10rem 10rem;
+	row-gap: 2.5rem;
+	column-gap: 2.5em;
+}
+
+.hracovy-kostky img {
+	cursor: pointer;
+	transition: 160ms;
+}
+
+.hracovy-kostky img:hover {
+	scale: 106%;
+}
+
+.pocitacova-strana {
+	width: 45%;
+}
