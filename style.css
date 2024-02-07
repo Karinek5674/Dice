@@ -32,6 +32,10 @@ body {
 	scale: 107%;
 }
 
+.hracova-tlacitka button:active {
+	color: #ba9501;
+}
+
 .hracovy-kostky {
 	margin-top: 2.4rem;
 	display: grid;
