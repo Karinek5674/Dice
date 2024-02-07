@@ -6,6 +6,9 @@ let kostka4 = 0;
 let kostka5 = 0;
 let kostka6 = 0;
 
+//score hrace
+scoreHrace = 0;
+
 //fotky kostek
 const dicePic1 = "<img src=./dices/1.svg>";
 const dicePic2 = "<img src=./dices/2.svg>";
@@ -44,33 +47,37 @@ const divs = [div0, div1, div2, div3, div4, div5]
 
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
-	hracuvTah = true;
-	priradHodnotuKostkam();
-	numDivu++;
-	console.log(kostky) //array s kostkama
-	let i = 0;
-	kostky.forEach(kostka => {
-		console.log(divs[i]);
-		switch(kostka){
-			case kostka = 1:
-				divs[i].innerHTML = dicePic1;
-				break;
-			case kostka = 2:
-				divs[i].innerHTML = dicePic2;
-				break;
-			case kostka = 3:
-				divs[i].innerHTML = dicePic3;
-				break;
-			case kostka = 4:
-				divs[i].innerHTML = dicePic4;
-				break;
-			case kostka = 5:
-				divs[i].innerHTML = dicePic5;
-				break;
-			case kostka = 6:
-				divs[i].innerHTML = dicePic6;
-				break;
+	if (hracuvTah == false) {
+		hracuvTah = true;
+		priradHodnotuKostkam();
+		numDivu++;
+		console.log(kostky) //array s kostkama
+		let i = 0;
+		kostky.forEach(kostka => {
+			console.log(divs[i]);
+			switch(kostka){
+				case kostka = 1:
+					divs[i].innerHTML = dicePic1;
+					break;
+				case kostka = 2:
+					divs[i].innerHTML = dicePic2;
+					break;
+				case kostka = 3:
+					divs[i].innerHTML = dicePic3;
+					break;
+				case kostka = 4:
+					divs[i].innerHTML = dicePic4;
+					break;
+				case kostka = 5:
+					divs[i].innerHTML = dicePic5;
+					break;
+				case kostka = 6:
+					divs[i].innerHTML = dicePic6;
+					break;
+			}
+			i++;
+		})		
+		} else {
+			alert('You already rolled, score and you roll again.')
 		}
-		i++;
-	})		
 })
