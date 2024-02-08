@@ -6,16 +6,25 @@ let kostka4 = 0;
 let kostka5 = 0;
 let kostka6 = 0;
 
+//selected kostky ze kterých pak bdue vycházet to porovnávání a výpočet bodů
+let kostka1Selected = 0;
+let kostka2Selected = 0;
+let kostka3Selected = 0;
+let kostka4Selected = 0;
+let kostka5Selected = 0;
+let kostka6Selected = 0;
+
 //score hrace
-scoreHrace = 0;
+let scoreHrace = 0;
 
 //fotky kostek
-const dicePic1 = "<img src=./dices/1.svg>";
-const dicePic2 = "<img src=./dices/2.svg>";
-const dicePic3 = "<img src=./dices/3.svg>";
-const dicePic4 = "<img src=./dices/4.svg>";
-const dicePic5 = "<img src=./dices/5.svg>";
-const dicePic6 = "<img src=./dices/6.svg>";
+const dicePic1 = `<img class="dice1 selectableDice" data-value="1" src="./dices/1.svg">`;
+const dicePic2 = `<img class="dice2 selectableDice" data-value="2" src="./dices/2.svg">`;
+const dicePic3 = `<img class="dice3 selectableDice" data-value="3" src="./dices/3.svg">`;
+const dicePic4 = `<img class="dice4 selectableDice" data-value="4" src="./dices/4.svg">`;
+const dicePic5 = `<img class="dice5 selectableDice" data-value="5" src="./dices/5.svg">`;
+const dicePic6 = `<img class="dice6 selectableDice" data-value="6" src="./dices/6.svg">`;
+
 
 //kostkove divy
 div0 = document.querySelector('.kostka1');
@@ -76,8 +85,21 @@ rollButton.addEventListener('click', () => {
 					break;
 			}
 			i++;
-		})		
+		})
+		//Selectování kostek a jejich hodnoty 
+		document.querySelectorAll('.selectableDice').forEach((kostka) => {
+			kostka.addEventListener('click', () => {
+				console.log(kostka.dataset.value); //TOHLE JE VALUE TE KOSTKY
+				if (kostka.classList.contains('selectedDice') == false) {
+					kostka.classList.add('selectedDice');
+				} else {
+					kostka.classList.remove('selectedDice');
+				}
+			})
+		})
 		} else {
-			alert('You already rolled, score and you roll again.')
+			alert('You already rolled, score and you can roll again.')
 		}
 })
+
+
