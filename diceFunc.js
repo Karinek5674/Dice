@@ -1,3 +1,5 @@
+import { hodnotaKostek } from "./hodnotaKostek.js";
+
 //jednotlive kostky
 let kostka1 = 0;
 let kostka2 = 0;
@@ -27,12 +29,12 @@ const dicePic6 = `<img class="dice6 selectableDice" data-value="6" src="./dices/
 
 
 //kostkove divy
-div0 = document.querySelector('.kostka1');
-div1 = document.querySelector('.kostka2');
-div2 = document.querySelector('.kostka3');
-div3 = document.querySelector('.kostka4');
-div4 = document.querySelector('.kostka5');
-div5 = document.querySelector('.kostka6');
+const div0 = document.querySelector('.kostka1');
+const div1 = document.querySelector('.kostka2');
+const div2 = document.querySelector('.kostka3');
+const div3 = document.querySelector('.kostka4');
+const div4 = document.querySelector('.kostka5');
+const div5 = document.querySelector('.kostka6');
 
 //array obsahujici kostky, do ktere se pak budou hodnoty prirazovat a z ni brat 
 const kostky = [kostka1, kostka2, kostka3, kostka4, kostka5, kostka6]
@@ -53,7 +55,7 @@ function priradHodnotuKostkam() {
 let hracuvTah = false;
 let numDivu = 0;
 const divs = [div0, div1, div2, div3, div4, div5];
-let selectedDice = [];
+let selectedDices = []; //array tech zakliknutych kostek
 
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
@@ -93,9 +95,19 @@ rollButton.addEventListener('click', () => {
 				let valueKostky = kostka.dataset.value; //TOHLE JE VALUE TE KOSTKY
 				if (kostka.classList.contains('selectedDice') == false) {
 					kostka.classList.add('selectedDice');
-					selectedDice.push(valueKostky); // do arraye mi to hodí ten value kliknuté kostky 
-					console.log(selectedDice);
+					selectedDices.push(valueKostky); // do arraye mi to hodí ten value kliknuté kostky 
+					console.log(selectedDices);
 				} else {
+					//console.log(valueKostky); //value kostky, kterou jsem klikl
+					for (let i = 0; i < selectedDices.length; i++) {
+						console.log(selectedDices[i]); //pokud se hodnota na indexu bude rovnat nejake te kostce, tak to ten index vyjebe
+							if (selectedDices[i] == valueKostky) {
+								//console.log(selectedDices[i])
+								selectedDices.splice(i, 1);
+								break;
+							}
+					}
+					console.log(selectedDices);
 					kostka.classList.remove('selectedDice');
 				}
 			})
@@ -103,4 +115,9 @@ rollButton.addEventListener('click', () => {
 		} else {
 			alert('You already rolled, score and you can roll again.')
 		}
+})
+
+//continue tlačítko 
+document.querySelector('.js-continue').addEventListener('click', () => {
+	console.log('klikl jsi na continue');
 })

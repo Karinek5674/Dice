@@ -1,4 +1,4 @@
-const hodnotaKostek = {}
+export const hodnotaKostek = {}
 
 hodnotaKostek['1'] = 100;
 hodnotaKostek['11'] = 200;
