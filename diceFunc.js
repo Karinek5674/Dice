@@ -52,7 +52,8 @@ function priradHodnotuKostkam() {
 //Tlačítko na hod kostkami, priradi hodnotu kostkam a dle nich šsi pak hrac vybere 
 let hracuvTah = false;
 let numDivu = 0;
-const divs = [div0, div1, div2, div3, div4, div5]
+const divs = [div0, div1, div2, div3, div4, div5];
+let selectedDice = [];
 
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
@@ -89,9 +90,11 @@ rollButton.addEventListener('click', () => {
 		//Selectování kostek a jejich hodnoty 
 		document.querySelectorAll('.selectableDice').forEach((kostka) => {
 			kostka.addEventListener('click', () => {
-				console.log(kostka.dataset.value); //TOHLE JE VALUE TE KOSTKY
+				let valueKostky = kostka.dataset.value; //TOHLE JE VALUE TE KOSTKY
 				if (kostka.classList.contains('selectedDice') == false) {
 					kostka.classList.add('selectedDice');
+					selectedDice.push(valueKostky); // do arraye mi to hodí ten value kliknuté kostky 
+					console.log(selectedDice);
 				} else {
 					kostka.classList.remove('selectedDice');
 				}
@@ -101,5 +104,3 @@ rollButton.addEventListener('click', () => {
 			alert('You already rolled, score and you can roll again.')
 		}
 })
-
-
