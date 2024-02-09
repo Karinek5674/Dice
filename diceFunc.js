@@ -119,5 +119,5 @@ rollButton.addEventListener('click', () => {
 
 //continue tlačítko 
 document.querySelector('.js-continue').addEventListener('click', () => {
-	console.log('klikl jsi na continue');
+	//tady bude funkce toho continue tlačítka
 })
