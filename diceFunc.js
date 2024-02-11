@@ -1,5 +1,64 @@
 import { hodnotaKostek } from "./hodnotaKostek.js";
 
+function generujKostkyAJejichFunkce() {
+	hracuvTah = true;
+	priradHodnotuKostkam();
+	numDivu++;
+	console.log(kostky) //array s kostkama
+	let i = 0;
+	kostky.forEach(kostka => {
+		console.log(divs[i]);
+		switch(kostka){
+			case kostka = 1:
+				divs[i].innerHTML = dicePic1;
+				break;
+			case kostka = 2:
+				divs[i].innerHTML = dicePic2;
+				break;
+			case kostka = 3:
+				divs[i].innerHTML = dicePic3;
+				break;
+			case kostka = 4:
+				divs[i].innerHTML = dicePic4;
+				break;
+			case kostka = 5:
+				divs[i].innerHTML = dicePic5;
+				break;
+			case kostka = 6:
+				divs[i].innerHTML = dicePic6;
+				break;
+		}
+		i++;
+	})
+	//Selectování kostek a jejich hodnoty 
+	document.querySelectorAll('.selectableDice').forEach((kostka) => {
+		kostka.addEventListener('click', () => {
+			let valueKostky = kostka.dataset.value; //TOHLE JE VALUE TE KOSTKY
+			if (kostka.classList.contains('selectedDice') == false) {
+				kostka.classList.add('selectedDice');
+				selectedDices.push(valueKostky);// do arraye mi to hodí ten value kliknuté kostky 
+				numberOfSelectedDices++; 
+				console.log(numberOfSelectedDices);
+				console.log(selectedDices);
+			} else {
+				//console.log(valueKostky); //value kostky, kterou jsem klikl
+				for (let i = 0; i < selectedDices.length; i++) {
+					//pokud se hodnota na indexu bude rovnat nejake te kostce, tak to ten index vyjebe
+						if (selectedDices[i] == valueKostky) {
+							//console.log(selectedDices[i])
+							selectedDices.splice(i, 1);
+							break;
+						}
+				}
+				console.log(selectedDices);
+				kostka.classList.remove('selectedDice');
+				numberOfSelectedDices--;
+				console.log(numberOfSelectedDices);
+			}
+		})
+	})
+}
+
 //jednotlive kostky
 let kostka1 = 0;
 let kostka2 = 0;
@@ -56,68 +115,22 @@ let hracuvTah = false;
 let numDivu = 0;
 const divs = [div0, div1, div2, div3, div4, div5];
 let selectedDices = []; //array tech zakliknutych kostek
+let numberOfSelectedDices = 0;
 
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
 	if (hracuvTah == false) {
-		hracuvTah = true;
-		priradHodnotuKostkam();
-		numDivu++;
-		console.log(kostky) //array s kostkama
-		let i = 0;
-		kostky.forEach(kostka => {
-			console.log(divs[i]);
-			switch(kostka){
-				case kostka = 1:
-					divs[i].innerHTML = dicePic1;
-					break;
-				case kostka = 2:
-					divs[i].innerHTML = dicePic2;
-					break;
-				case kostka = 3:
-					divs[i].innerHTML = dicePic3;
-					break;
-				case kostka = 4:
-					divs[i].innerHTML = dicePic4;
-					break;
-				case kostka = 5:
-					divs[i].innerHTML = dicePic5;
-					break;
-				case kostka = 6:
-					divs[i].innerHTML = dicePic6;
-					break;
-			}
-			i++;
-		})
-		//Selectování kostek a jejich hodnoty 
-		document.querySelectorAll('.selectableDice').forEach((kostka) => {
-			kostka.addEventListener('click', () => {
-				let valueKostky = kostka.dataset.value; //TOHLE JE VALUE TE KOSTKY
-				if (kostka.classList.contains('selectedDice') == false) {
-					kostka.classList.add('selectedDice');
-					selectedDices.push(valueKostky); // do arraye mi to hodí ten value kliknuté kostky 
-					console.log(selectedDices);
-				} else {
-					//console.log(valueKostky); //value kostky, kterou jsem klikl
-					for (let i = 0; i < selectedDices.length; i++) {
-						console.log(selectedDices[i]); //pokud se hodnota na indexu bude rovnat nejake te kostce, tak to ten index vyjebe
-							if (selectedDices[i] == valueKostky) {
-								//console.log(selectedDices[i])
-								selectedDices.splice(i, 1);
-								break;
-							}
-					}
-					console.log(selectedDices);
-					kostka.classList.remove('selectedDice');
-				}
-			})
-		})
+			generujKostkyAJejichFunkce()
 		} else {
 			alert('You already rolled, score and you can roll again.')
 		}
 })
 
-//continue tlačítko 
+//CONTINUE tlačítko 
 document.querySelector('.js-continue').addEventListener('click', () => {
-	//tady bude funkce toho continue tlačítka
+	if (numberOfSelectedDices < 6) {
+		//tak budeš hrat s kostkama co ti zbyl
+	} else {
+		//budes hrat znovu ssesti kostkama
+	}
 })
