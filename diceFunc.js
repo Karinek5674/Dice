@@ -1,6 +1,26 @@
 import { hodnotaKostek } from "./hodnotaKostek.js";
 
+//selected kostky ze kterých pak bdue vycházet to porovnávání a výpočet bodů
+let kostka1Selected = 0;
+let kostka2Selected = 0;
+let kostka3Selected = 0;
+let kostka4Selected = 0;
+let kostka5Selected = 0;
+let kostka6Selected = 0;
+
+//jednotlive kostky
+let kostka1 = 0;
+let kostka2 = 0;
+let kostka3 = 0;
+let kostka4 = 0;
+let kostka5 = 0;
+let kostka6 = 0;
+
+//score hrace
+let scoreHrace = 0;
+
 function generujKostkyAJejichFunkce() {
+	selectedDices = [];
 	hracuvTah = true;
 	priradHodnotuKostkam();
 	numDivu++;
@@ -33,19 +53,56 @@ function generujKostkyAJejichFunkce() {
 	//Selectování kostek a jejich hodnoty 
 	document.querySelectorAll('.selectableDice').forEach((kostka) => {
 		kostka.addEventListener('click', () => {
+			kostka1Selected = 0;
+			kostka2Selected = 0;
+			kostka3Selected = 0;
+			kostka4Selected = 0;
+			kostka5Selected = 0;
+			kostka6Selected = 0;
 			let valueKostky = kostka.dataset.value; //TOHLE JE VALUE TE KOSTKY
 			if (kostka.classList.contains('selectedDice') == false) {
 				kostka.classList.add('selectedDice');
 				selectedDices.push(valueKostky);// do arraye mi to hodí ten value kliknuté kostky 
 				numberOfSelectedDices++; 
-				console.log(numberOfSelectedDices);
-				console.log(selectedDices);
-			} else {
+				//POČÍTANÍ SCORE HRÁČE
+				console.log(selectedDices) //array selectnutých kostek
+				selectedDices.forEach(kostka => {
+					switch(kostka){
+						case kostka = '1':
+							kostka1Selected++;
+							break;
+						case kostka = '2':
+							kostka2Selected++;
+							break;
+						case kostka = '3':
+							kostka3Selected++;
+							break;
+						case kostka = '4':
+							kostka4Selected++;
+							break;
+						case kostka = '5':
+							kostka5Selected++;
+							break;
+						case kostka = '6':
+							kostka6Selected++;
+							break;
+					}
+				})
+				console.log(
+					kostka1Selected,
+					kostka2Selected,
+					kostka3Selected,
+					kostka4Selected,
+					kostka5Selected,
+					kostka6Selected
+					)
+					//Tady budu přiřazovat těm kostkám hodnoty konečně
+
+			} else { //DESELECTOVÁNÍ KOSTEK
 				//console.log(valueKostky); //value kostky, kterou jsem klikl
-				for (let i = 0; i < selectedDices.length; i++) {
-					//pokud se hodnota na indexu bude rovnat nejake te kostce, tak to ten index vyjebe
+				for (let i = '0'; i < selectedDices.length; i++) {
+					//pokud se hodnota na indexu bude rovnat nejake te kostce, tak to ten index vyjebea na indexu bude rovnat nejake te kostce, tak to ten index vyjebe
 						if (selectedDices[i] == valueKostky) {
-							//console.log(selectedDices[i])
 							selectedDices.splice(i, 1);
 							break;
 						}
@@ -53,30 +110,10 @@ function generujKostkyAJejichFunkce() {
 				console.log(selectedDices);
 				kostka.classList.remove('selectedDice');
 				numberOfSelectedDices--;
-				console.log(numberOfSelectedDices);
 			}
 		})
 	})
 }
-
-//jednotlive kostky
-let kostka1 = 0;
-let kostka2 = 0;
-let kostka3 = 0;
-let kostka4 = 0;
-let kostka5 = 0;
-let kostka6 = 0;
-
-//selected kostky ze kterých pak bdue vycházet to porovnávání a výpočet bodů
-let kostka1Selected = 0;
-let kostka2Selected = 0;
-let kostka3Selected = 0;
-let kostka4Selected = 0;
-let kostka5Selected = 0;
-let kostka6Selected = 0;
-
-//score hrace
-let scoreHrace = 0;
 
 //fotky kostek
 const dicePic1 = `<img class="dice1 selectableDice" data-value="1" src="./dices/1.svg">`;
@@ -99,7 +136,7 @@ const div5 = document.querySelector('.kostka6');
 const kostky = [kostka1, kostka2, kostka3, kostka4, kostka5, kostka6]
 
 //funkce generující číslo od 1 do 6 na random
-function randomDice() { 
+function randomDice() {
 	return Math.floor(Math.random() * 6) + 1
 }
 
@@ -128,9 +165,11 @@ rollButton.addEventListener('click', () => {
 
 //CONTINUE tlačítko 
 document.querySelector('.js-continue').addEventListener('click', () => {
-	if (numberOfSelectedDices < 6) {
-		//tak budeš hrat s kostkama co ti zbyl
-	} else {
-		//budes hrat znovu ssesti kostkama
+	if (numberOfSelectedDices == 0) {
+		alert('Choose at least one dice to continue');
+	} else if (numberOfSelectedDices < 6) {
+		//budes hazet s kostkama co ti zbyly
+	} else if (numberOfSelectedDices == 6) {
+		//znova hazis s sesti kostkama
 	}
 })

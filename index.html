@@ -4,23 +4,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="style.css">
 		<link rel="icon" href="./dices/5.svg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
     <title>Dice</title>
 	</head>
   <body>
 		<div class="hracova-strana">
 			<div class="hracova-tlacitka">
 				<button class="roll js-roll">Roll the dice</button>
-				<button class="restart js-restart">Restart game</button>
+				<button class="end js-end">End game</button>
 				<button class="continue js-continue">Score & continue round</button>
-				<button class="end js-end">Score & end round</button>
+				<button class="end-round js-end-round">Score & end round</button>
 			</div>
 			<div class="hracovy-kostky">
-				<div class="kostka1"><img src="./dices/empty.svg"></div>
-				<div class="kostka2"><img src="./dices/empty.svg"></div>
-				<div class="kostka3"><img src="./dices/empty.svg"></div>
-				<div class="kostka4"><img src="./dices/empty.svg"></div>
-				<div class="kostka5"><img src="./dices/empty.svg"></div>
-				<div class="kostka6"><img src="./dices/empty.svg"></div>
+				<div class="kostka1"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka2"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka3"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka4"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka5"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka6"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+			<div class="hracovo-info">
+				<p>Celkem: <span>/cislo</span></p>
+				<p>Mezisoučet: <span>score</span></p>
+				<p>Vybráno: <span>score</span></p>
 			</div>
 		</div>
     <script type="module" src="hodnotaKostek.js"></script>

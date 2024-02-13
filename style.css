@@ -1,24 +1,26 @@
 body {
+	font-family: 'Oxygen', sans-serif;
 	display: flex;
 	justify-content: space-between;
 	background-color: #1f1f1f;
 	margin: 2em;
-	height: 90vh;
 }
 
 .hracova-strana {
 	display: flex;
 	flex-direction: column;
-	width: 45%;
 }
 
 .hracova-tlacitka {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.2em;
 }
 
 .hracova-tlacitka button {
-	font-weight: 500;
+	font-family: 'Oxygen', sans-serif;
+	font-weight: medium;
 	background-color: black;
 	color: #806600;
 	border: none;
@@ -37,30 +39,60 @@ body {
 }
 
 .hracovy-kostky {
-	margin-top: 2.4rem;
 	display: grid;
-	grid-template-columns: 33% 33% 33%;
-	grid-template-rows: 50% 50%;
-	row-gap: 2.5rem;
-	column-gap: 2.5em;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	row-gap: 0.8em;
+	column-gap: 0.8em;
+	justify-content: space-evenly;
 }
 
-.hracovy-kostky img {
-	cursor: pointer;
+.kostka-img {
+	pointer-events: none;
+}
+
+.kostka-img,
+.selectableDice {
+	-webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.hracovo-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.hracovo-info p {
+	font-weight: medium;
+	background-color: black;
+	color: #806600;
+	border: none;
+	padding: 1em;
+	border-radius: 6px;
+	width: 26%;
+}
+
+.selectableDice {
 	transition: 160ms;
 }
 
-.hracovy-kostky img:hover {
-	scale: 107%;
+.selectableDice:hover {
+	cursor: pointer;
+	scale: 104%;
 }
 
-.pocitacova-strana {
-	width: 45%;
+.selectableDice:active {
+	scale: 100%;
 }
 
 .selectedDice {
-	border: solid 1px #806600;
+	outline: solid 1px #806600;
 	border-radius: 30px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .kostka1,
@@ -69,8 +101,6 @@ body {
 .kostka4,
 .kostka5,
 .kostka6 {
-	background-color: rgba(255, 182, 193, 0);
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: inline-block;
+	margin: 0 auto;
 }
