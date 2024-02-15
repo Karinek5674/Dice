@@ -8,6 +8,13 @@ let kostka4Selected = 0;
 let kostka5Selected = 0;
 let kostka6Selected = 0;
 
+let kostka1Deselected = 0;
+let kostka2Deselected = 0;
+let kostka3Deselected = 0;
+let kostka4Deselected = 0;
+let kostka5Deselected = 0;
+let kostka6Deselected = 0;
+
 //jednotlive kostky
 let kostka1 = 0;
 let kostka2 = 0;
@@ -53,14 +60,14 @@ function generujKostkyAJejichFunkce() {
 	//Selectování kostek a jejich hodnoty 
 	document.querySelectorAll('.selectableDice').forEach((kostka) => {
 		kostka.addEventListener('click', () => {
-			kostka1Selected = 0;
-			kostka2Selected = 0;
-			kostka3Selected = 0;
-			kostka4Selected = 0;
-			kostka5Selected = 0;
-			kostka6Selected = 0;
 			let valueKostky = kostka.dataset.value; //TOHLE JE VALUE TE KOSTKY
 			if (kostka.classList.contains('selectedDice') == false) {
+				kostka1Selected = 0;
+				kostka2Selected = 0;
+				kostka3Selected = 0;
+				kostka4Selected = 0;
+				kostka5Selected = 0;
+				kostka6Selected = 0;
 				kostka.classList.add('selectedDice');
 				selectedDices.push(valueKostky);// do arraye mi to hodí ten value kliknuté kostky 
 				numberOfSelectedDices++; 
@@ -96,12 +103,39 @@ function generujKostkyAJejichFunkce() {
 					kostka5Selected,
 					kostka6Selected
 					)
-					//Tady budu přiřazovat těm kostkám hodnoty konečně
+					//Tady budu přiřazovat těm kostkám hodnoty podle map konečně
 
 			} else { //DESELECTOVÁNÍ KOSTEK
+				switch(valueKostky) {
+					case valueKostky = '1':
+						kostka1Selected--;
+						break;
+					case valueKostky = '2':
+						kostka2Selected--;
+						break;
+					case valueKostky = '3':
+						kostka3Selected--;
+						break;
+					case valueKostky = '4':
+						kostka4Selected--;
+						break;
+					case valueKostky = '5':
+						kostka5Selected--;
+						break;
+					case valueKostky = '6':
+						kostka6Selected--;
+						break;
+				}	
+				console.log(
+					kostka1Selected,
+					kostka2Selected,
+					kostka3Selected,
+					kostka4Selected,
+					kostka5Selected,
+					kostka6Selected
+					)
 				//console.log(valueKostky); //value kostky, kterou jsem klikl
-				for (let i = '0'; i < selectedDices.length; i++) {
-					//pokud se hodnota na indexu bude rovnat nejake te kostce, tak to ten index vyjebea na indexu bude rovnat nejake te kostce, tak to ten index vyjebe
+				for (let i = 0; i < selectedDices.length; i++) {
 						if (selectedDices[i] == valueKostky) {
 							selectedDices.splice(i, 1);
 							break;
@@ -173,3 +207,5 @@ document.querySelector('.js-continue').addEventListener('click', () => {
 		//znova hazis s sesti kostkama
 	}
 })
+
+//VÝPOČET BODŮ
