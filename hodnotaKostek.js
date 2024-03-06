@@ -1,5 +1,6 @@
 export const hodnotaKostek = {}
 
+/*
 hodnotaKostek['1'] = 100;
 hodnotaKostek['11'] = 200;
 hodnotaKostek['111'] = 1000;
@@ -11,7 +12,7 @@ hodnotaKostek['2'] = 0;
 hodnotaKostek['22'] = 0;
 hodnotaKostek['222'] = 200;
 hodnotaKostek['2222'] = 400;
-hodnotaKostek['22222'] = 600;
+hodnotaKostek['22222'] = 800;
 hodnotaKostek['222222'] = 1600;
 
 hodnotaKostek['3'] = 0;
@@ -45,3 +46,25 @@ hodnotaKostek['666666'] = 4800;
 hodnotaKostek['123456'] = 1500;
 hodnotaKostek['12345'] = 500;
 hodnotaKostek['23456'] = 750;
+*/
+
+/*
+kostka1Selected == 1;
+kostka1Selected == 2;
+kostka1Selected == 3;
+kostka1Selected == 4;
+kostka1Selected == 5;
+kostka1Selected == 6;
+
+kostka2Selected == 1;
+kostka2Selected == 2;
+kostka2Selected == 3;
+kostka2Selected == 4;
+kostka2Selected == 5;
+kostka2Selected == 6;
+
+kostka3Selected
+kostka4Selected
+kostka5Selected
+kostka6Selected
+*/
