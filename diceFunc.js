@@ -1,4 +1,6 @@
-import { hodnotaKostek } from "./hodnotaKostek.js";
+import {konzole} from "./functions.js";
+konzole();
+
 //fotky kostek
 const dicePic1 = `<img class="dice1 selectableDice" data-value="1" src="./dices/1.svg">`;
 const dicePic2 = `<img class="dice2 selectableDice" data-value="2" src="./dices/2.svg">`;
@@ -14,13 +16,6 @@ let kostka3Selected = 0;
 let kostka4Selected = 0;
 let kostka5Selected = 0;
 let kostka6Selected = 0;
-
-let countOfKostka1 = 0;
-let countOfKostka2 = 0;
-let countOfKostka3 = 0;
-let countOfKostka4 = 0;
-let countOfKostka5 = 0;
-let countOfKostka6 = 0;
 
 //jednotlive kostky
 let kostka1 = 0;
@@ -47,27 +42,27 @@ function generujKostkyAJejichFunkce() {
 		switch(kostka){
 			case 1:
 				divs[i].innerHTML = dicePic1;
-				countOfKostka1++;
+				kostka1Selected++;
 				break;
 			case 2:
 				divs[i].innerHTML = dicePic2;
-				countOfKostka2++;
+				kostka2Selected++;
 				break;
 			case 3:
 				divs[i].innerHTML = dicePic3;
-				countOfKostka3++;
+				kostka3Selected++;
 				break;
 			case 4:
 				divs[i].innerHTML = dicePic4;
-				countOfKostka4++;
+				kostka4Selected++;
 				break;
 			case 5:
 				divs[i].innerHTML = dicePic5;
-				countOfKostka5++;
+				kostka5Selected++;
 				break;
 			case 6:
 				divs[i].innerHTML = dicePic6;
-				countOfKostka6++;
+				kostka6Selected++;
 				break;
 			default: 
 				divs[i].innerHTML = '';
@@ -75,20 +70,24 @@ function generujKostkyAJejichFunkce() {
 		}
 		i++;
 	})
-	console.log(countOfKostka1, countOfKostka2, countOfKostka3, countOfKostka4, countOfKostka5, countOfKostka6); //zde bude podminka na tu kontrolu kostek
-	if (countOfKostka1 > 0 || countOfKostka5 > 0 ) {
+	console.log(kostka1Selected, kostka2Selected, kostka3Selected, kostka4Selected, kostka5Selected, kostka6Selected); //zde bude podminka na tu kontrolu kostek
+	if (kostka1Selected > 0 || kostka5Selected > 0 ) {
 		console.log('Mas alespon jednu kostka1 nebo kostka5')
 	} else {
-		if (countOfKostka2 >= 3) {
+		if (kostka2Selected >= 3) {
 			console.log('Mas 3 nebo vice kostka2')
-		} else if (countOfKostka3 >= 3) {
+		} else if (kostka3Selected >= 3) {
 			console.log('Mas 3 nebo vice kostka3')
-		} else if (countOfKostka4 >= 3) {
+		} else if (kostka4Selected >= 3) {
 			console.log('Mas 3 nebo vice kostka4')
-		} else if (countOfKostka6 >= 3) {
+		} else if (kostka6Selected >= 3) {
 			console.log('Mas 3 nebo vice kostka6')
 		} else {
-			alert('Smůla');
+			smulaWindow.classList.add('smula-show');
+			console.log(numberOfSelectedDices);
+			setTimeout(() => {
+				smulaWindow.classList.remove('smula-show');
+			}, 2000)
 		}
 	}
 	//Selectování kostek a jejich hodnoty 
@@ -161,7 +160,7 @@ function generujKostkyAJejichFunkce() {
 				console.log(selectedDices);
 				kostka.classList.remove('selectedDice');
 				numberOfSelectedDices--;
-				countPoints()
+				countPoints();
 			}
 		})
 	})
@@ -214,17 +213,19 @@ document.querySelector('.js-continue').addEventListener('click', () => {
 		kostky = [];
 		definitivniScore += scoreHrace;
 		scoreHrace = 0;
-		//aktualizování html
 		defScore.innerHTML = definitivniScore;
 		selectedScore.innerHTML = scoreHrace;
-		//ze mi zbyde jen ten zbytek kostek a ten znova nahodne vyjebe hodnoity a z těch si budu zase moci vybírat
 		console.log(generujKostek);
+		generujKostek -= numberOfSelectedDices;
 		generujKostkyAJejichFunkce();
-
-		//tady bude funkce generovat ty kostky od 1 do 6, ale bude jich pouze tolik jako těch noveKostky
-
 	} else if (numberOfSelectedDices == 6) {
-		//znova hazis s sesti kostkama
+		definitivniScore += scoreHrace;
+		scoreHrace = 0;
+		defScore.innerHTML = definitivniScore;
+		selectedScore.innerHTML = scoreHrace;
+		numberOfSelectedDices = 0;
+		generujKostek = 6;
+		generujKostkyAJejichFunkce();
 	}
 })
 
@@ -395,20 +396,17 @@ function countPoints() {
 	}
 	selectedScore.innerHTML = scoreHrace;
 	console.log(scoreHrace);
-	generujKostek -= numberOfSelectedDices;
 }
 
 //CHECKUJE SMULU
-function checkSmula() {
-	
-}
+let smulaWindow = document.querySelector('.js-smula');
 
 function resetPoctyKostek() {
-	countOfKostka1 = 0;
-	countOfKostka2 = 0;
-	countOfKostka3 = 0;
-	countOfKostka4 = 0;
-	countOfKostka5 = 0;
-	countOfKostka6 = 0;
-	console.log(countOfKostka1, countOfKostka2, countOfKostka3, countOfKostka4, countOfKostka5, countOfKostka6);
+	kostka1Selected = 0;
+	kostka2Selected = 0;
+	kostka3Selected = 0;
+	kostka4Selected = 0;
+	kostka5Selected = 0;
+	kostka6Selected = 0;
+	console.log(kostka1Selected, kostka2Selected, kostka3Selected, kostka4Selected, kostka5Selected, kostka6Selected);
 }
