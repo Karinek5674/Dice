@@ -29,10 +29,10 @@ let kostka6 = 0;
 let generujKostek = 6;
 
 function generujKostkyAJejichFunkce() {
-	resetDivs();
+	emptyDivs();
 	resetPoctyKostek();
 	selectedDices = [];
-	hracuvTah = true;
+	hracuvTah1 = true;
 	priradHodnotuKostkam();
 	numDivu++;
 	console.log(kostky) //array s hodnotou kostek
@@ -70,26 +70,9 @@ function generujKostkyAJejichFunkce() {
 		}
 		i++;
 	})
-	console.log(kostka1Selected, kostka2Selected, kostka3Selected, kostka4Selected, kostka5Selected, kostka6Selected); //zde bude podminka na tu kontrolu kostek
-	if (kostka1Selected > 0 || kostka5Selected > 0 ) {
-		console.log('Mas alespon jednu kostka1 nebo kostka5')
-	} else {
-		if (kostka2Selected >= 3) {
-			console.log('Mas 3 nebo vice kostka2')
-		} else if (kostka3Selected >= 3) {
-			console.log('Mas 3 nebo vice kostka3')
-		} else if (kostka4Selected >= 3) {
-			console.log('Mas 3 nebo vice kostka4')
-		} else if (kostka6Selected >= 3) {
-			console.log('Mas 3 nebo vice kostka6')
-		} else {
-			smulaWindow.classList.add('smula-show');
-			console.log(numberOfSelectedDices);
-			setTimeout(() => {
-				smulaWindow.classList.remove('smula-show');
-			}, 2000)
-		}
-	}
+	console.log(kostka1Selected, kostka2Selected, kostka3Selected, kostka4Selected, kostka5Selected, kostka6Selected); 
+	//zde bude podminka na tu kontrolu kostek
+	checkSmula();
 	//Selectování kostek a jejich hodnoty 
 	document.querySelectorAll('.selectableDice').forEach((kostka) => {
 		kostka.addEventListener('click', () => {
@@ -190,7 +173,8 @@ function randomDice() {
 }
 
 //Tlačítko na hod kostkami, priradi hodnotu kostkam a dle nich šsi pak hrac vybere 
-let hracuvTah = false;
+let totalScore = 0;
+let hracuvTah1 = false;
 let numDivu = 0;
 const divs = [div0, div1, div2, div3, div4, div5];
 let selectedDices = []; //array tech zakliknutych kostek
@@ -198,7 +182,7 @@ let numberOfSelectedDices = 0;
 
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
-	if (hracuvTah == false) {
+	if (hracuvTah1 == false) {
 			generujKostkyAJejichFunkce()
 		} else {
 			alert('You already rolled, score and you can roll again.')
@@ -207,38 +191,59 @@ rollButton.addEventListener('click', () => {
 
 //CONTINUE tlačítko 
 document.querySelector('.js-continue').addEventListener('click', () => {
-	if (numberOfSelectedDices == 0) {
-		alert('Choose at least one dice to continue');
+	if (selectedScore == 0) {
+		alert('Select dices with value to continue round.');
 	} else if (numberOfSelectedDices < 6) {
 		kostky = [];
-		definitivniScore += scoreHrace;
-		scoreHrace = 0;
-		defScore.innerHTML = definitivniScore;
-		selectedScore.innerHTML = scoreHrace;
+		roundScore += selectedScore;
+		selectedScore = 0;
+		roundScoreHTML.innerHTML = roundScore;
+		selectedScoreHTML.innerHTML = selectedScore;
 		console.log(generujKostek);
 		generujKostek -= numberOfSelectedDices;
 		generujKostkyAJejichFunkce();
 	} else if (numberOfSelectedDices == 6) {
-		definitivniScore += scoreHrace;
-		scoreHrace = 0;
-		defScore.innerHTML = definitivniScore;
-		selectedScore.innerHTML = scoreHrace;
+		roundScore += selectedScore;
+		selectedScore = 0;
+		roundScoreHTML.innerHTML = roundScore;
+		selectedScoreHTML.innerHTML = selectedScore;
 		numberOfSelectedDices = 0;
 		generujKostek = 6;
 		generujKostkyAJejichFunkce();
 	}
 })
 
+const totalScoreHTML = document.querySelector('.js-total-score');
+
+//END tlačítko
+document.querySelector('.js-end-round').addEventListener('click', () => {
+	if (selectedScore == 0) {
+		alert('Select dices with value to end round.');
+	} else {
+		totalScore = totalScore + selectedScore + roundScore;
+		selectedScore = 0;
+		roundScore = 0; 
+		//Update HTML
+		totalScoreHTML.innerHTML = totalScore;
+		roundScoreHTML.innerHTML = roundScore;
+		selectedScoreHTML.innerHTML = selectedScore;
+		resetPoctyKostek();
+		resetDivs();
+		numberOfSelectedDices = 0;
+		hracuvTah1 = false;
+	}
+})
+
 //score hrace
-let scoreHrace = 0;
+let selectedScore = 0;
 let meziScore = 0;
-let definitivniScore = 0;
+let roundScore = 0;
 
 
-const selectedScore = document.querySelector('.js-selected');
-const defScore = document.querySelector('.js-def-score');
+const selectedScoreHTML = document.querySelector('.js-selected');
+const roundScoreHTML = document.querySelector('.js-def-score');
 
-function resetDivs() {
+function emptyDivs() {
 	div0.innerHTML = '';
 	div1.innerHTML = '';
 	div2.innerHTML = '';
@@ -247,10 +252,19 @@ function resetDivs() {
 	div5.innerHTML = '';
 }
 
+function resetDivs() {
+	div0.innerHTML = '<img src="./dices/empty.svg">';
+	div1.innerHTML = '<img src="./dices/empty.svg">';
+	div2.innerHTML = '<img src="./dices/empty.svg">';
+	div3.innerHTML = '<img src="./dices/empty.svg">';
+	div4.innerHTML = '<img src="./dices/empty.svg">';
+	div5.innerHTML = '<img src="./dices/empty.svg">';
+}
+
 //VÝPOČET BODŮ
 function countPoints() {
 	generujKostek = 6;
-	scoreHrace = 0;
+	selectedScore = 0;
 	meziScore = 0;
 	if (kostka1Selected > 0) {
 			switch (kostka1Selected) {
@@ -273,11 +287,11 @@ function countPoints() {
 							meziScore = 8000;
 							break;
 			}
-			scoreHrace = scoreHrace + meziScore;
+			selectedScore = selectedScore + meziScore;
 	}
 
 	if (kostka2Selected > 0 && kostka2Selected <= 2) {
-			scoreHrace = scoreHrace;
+			selectedScore = selectedScore;
 			meziScore = 0;
 	} else if (kostka2Selected > 2) {
 			switch (kostka2Selected) {
@@ -294,11 +308,11 @@ function countPoints() {
 							meziScore = 1600;
 							break;
 			}
-			scoreHrace = scoreHrace + meziScore;
+			selectedScore = selectedScore + meziScore;
 	}
 
 	if (kostka3Selected > 0 && kostka3Selected <= 2) {
-			scoreHrace = scoreHrace;
+			selectedScore = selectedScore;
 			meziScore = 0;
 	} else if (kostka3Selected > 2) {
 			switch (kostka3Selected) {
@@ -315,11 +329,11 @@ function countPoints() {
 							meziScore = 2400;
 							break;
 			}
-			scoreHrace = scoreHrace + meziScore;
+			selectedScore = selectedScore + meziScore;
 	}
 
 	if (kostka4Selected > 0 && kostka4Selected <= 2) {
-			scoreHrace = scoreHrace;
+			selectedScore = selectedScore;
 			meziScore = 0;
 	} else if (kostka4Selected > 2) {
 			switch (kostka4Selected) {
@@ -336,11 +350,11 @@ function countPoints() {
 							meziScore = 3200;
 							break;
 			}
-			scoreHrace = scoreHrace + meziScore;
+			selectedScore = selectedScore + meziScore;
 	}
 
 	if (kostka5Selected > 0) {
-			scoreHrace = scoreHrace;
+			selectedScore = selectedScore;
 			meziScore = 0;
 			switch (kostka5Selected) {
 					case 1:
@@ -362,11 +376,11 @@ function countPoints() {
 							meziScore = 4000;
 							break;
 			}
-			scoreHrace = scoreHrace + meziScore;
+			selectedScore = selectedScore + meziScore;
 	}
 
 	if (kostka6Selected > 0 && kostka6Selected <= 2) {
-			scoreHrace = scoreHrace;
+			selectedScore = selectedScore;
 			meziScore = 0;
 	} else if (kostka6Selected > 2) {
 			switch (kostka6Selected) {
@@ -383,7 +397,7 @@ function countPoints() {
 							meziScore = 4800;
 							break;
 			}
-			scoreHrace = scoreHrace + meziScore;
+			selectedScore = selectedScore + meziScore;
 	}
 
 	if (
@@ -392,14 +406,50 @@ function countPoints() {
 			(kostka4Selected > 0 && kostka4Selected < 3) ||
 			(kostka6Selected > 0 && kostka6Selected < 3)
 	) {
-			scoreHrace = 0;
+			selectedScore = 0;
 	}
-	selectedScore.innerHTML = scoreHrace;
-	console.log(scoreHrace);
+
+	if (kostka2Selected == 1 && kostka3Selected == 1 && kostka4Selected == 1 && kostka5Selected == 1 && kostka6Selected == 1) {
+		selectedScore = 750;
+	}
+	
+	if (kostka1Selected == 1 && kostka2Selected == 1 && kostka3Selected == 1 && kostka4Selected == 1 && kostka5Selected == 1 && kostka6Selected == 1) {
+		selectedScore = 1500
+	}
+	//update html
+	selectedScoreHTML.innerHTML = selectedScore;
+	console.log(selectedScore);
 }
 
 //CHECKUJE SMULU
 let smulaWindow = document.querySelector('.js-smula');
+function checkSmula() {
+	if (kostka1Selected > 0 || kostka5Selected > 0 ) {
+		console.log('Mas alespon jednu kostka1 nebo kostka5')
+	} else {
+		if (kostka2Selected >= 3) {
+			console.log('Mas 3 nebo vice kostka2')
+		} else if (kostka3Selected >= 3) {
+			console.log('Mas 3 nebo vice kostka3')
+		} else if (kostka4Selected >= 3) {
+			console.log('Mas 3 nebo vice kostka4')
+		} else if (kostka6Selected >= 3) {
+			console.log('Mas 3 nebo vice kostka6')
+		} else {
+			smulaWindow.classList.add('smula-show');
+			resetPoctyKostek();
+			numberOfSelectedDices = 0;
+			generujKostek = 6;
+			roundScore = 0;
+			roundScoreHTML.innerHTML = roundScore;
+			hracuvTah1 = false;
+			setTimeout(() => {
+				smulaWindow.classList.remove('smula-show');
+				resetDivs();
+			}, 2000)
+		}
+	}
+}
 
 function resetPoctyKostek() {
 	kostka1Selected = 0;

@@ -1,5 +1,5 @@
 function konzole() {
-	console.log('cosii');
+	console.log('cosi');
 }
 
 export {konzole};
