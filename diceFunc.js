@@ -1,5 +1,5 @@
-import {konzole} from "./functions.js";
-konzole();
+import {maxPoints} from "./functions.js";
+//maxPoints();
 
 //fotky kostek
 const dicePic1 = `<img class="dice1 selectableDice" data-value="1" src="./dices/1.svg">`;
@@ -310,10 +310,23 @@ let numberOfSelectedDices = 0;
 
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
-	if (hracuvTah1 == false) {
-			generujKostkyAJejichFunkce()
+	if (hracuvTah1 == true) {
+		alert('You already rolled, you cannot roll again.')
+	} else if (hracuvTah2 == false) {
+		generujKostkyAJejichFunkce()
+	} else {
+		alert('Wait for the other player to finish their game.')
+	}
+})
+
+const rollButton2 = document.querySelector('.js-roll2')
+rollButton2.addEventListener('click', () => {
+		if (hracuvTah2 == true) {
+			alert('You already rolled, you cannot roll again.')
+		} else if (hracuvTah1 == false) {
+			generujKostkyAJejichFunkce2()
 		} else {
-			alert('You already rolled, score and you can roll again.')
+			alert('Wait for the other player to finish their game.')
 		}
 })
 
@@ -789,7 +802,10 @@ function checkSmula() {
 		} else if (kostka6Selected >= 3) {
 			console.log('Mas 3 nebo vice kostka6')
 		} else {
+			//vybere hracovu plochu 1 & 2 a uděla, aby se na ní ndalo klikat
 			smulaWindow.classList.add('smula-show');
+			document.querySelector('.js-hrac1').classList.add('no-click');
+			document.querySelector('.js-hrac2').classList.add('no-click');
 			resetPoctyKostek();
 			numberOfSelectedDices = 0;
 			generujKostek = 6;
@@ -798,8 +814,11 @@ function checkSmula() {
 			roundScoreHTML.innerHTML = roundScore;
 			roundScoreHTML2.innerHTML = roundScore2;
 			hracuvTah1 = false;
+			hracuvTah2 = false;
 			setTimeout(() => {
 				smulaWindow.classList.remove('smula-show');
+				document.querySelector('.js-hrac1').classList.remove('no-click');
+				document.querySelector('.js-hrac2').classList.remove('no-click');
 				resetDivs();
 				resetDivs2();
 			}, 2000)
@@ -817,13 +836,3 @@ function resetPoctyKostek() {
 	console.log(kostka1Selected, kostka2Selected, kostka3Selected, kostka4Selected, kostka5Selected, kostka6Selected);
 }
 //HRAC 2
-
-
-const rollButton2 = document.querySelector('.js-roll2')
-rollButton2.addEventListener('click', () => {
-	if (hracuvTah1 == false) {
-			generujKostkyAJejichFunkce2()
-		} else {
-			alert('You already rolled, score and you can roll again.')
-		}
-})

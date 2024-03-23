@@ -1,5 +1,5 @@
-function konzole() {
-	console.log('cosi');
+function maxPoints() {
+	
 }
 
-export {konzole};
+export {maxPoints};
