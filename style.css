@@ -30,11 +30,14 @@ body {
 	cursor: pointer;
 }
 
-.hracova-tlacitka button:hover {
+.hracova-tlacitka button:hover,
+.confirm-score:hover,
+.new-game:hover {
 	scale: 107%;
 }
 
-.hracova-tlacitka button:active {
+.hracova-tlacitka button:active
+.confirm-score:active {
 	color: #ba9501;
 }
 
@@ -109,11 +112,9 @@ body {
 	display: none;
 }
 
-.no-click {
-	pointer-events: none;
-}
-
-.smula-show {
+.smula-show,
+.choose-score,
+.win-screen {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -129,4 +130,47 @@ body {
 	background-color: black;
 	color: #806600;
 	transition: 200ms;
+}
+
+.choose-score input {
+	all: unset;
+	padding: 0.4em;
+	border: none;
+	background-color: #1f1f1f;
+	border-radius: 6px;
+}
+
+.choose-score-input {
+	width: 48%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.confirm-score,
+.new-game  {
+	font-family: 'Oxygen', sans-serif;
+	font-weight: medium;
+	background-color: #1f1f1f;
+	color: #806600;
+	border: none;
+	padding: 0.6em;
+	border-radius: 6px;
+	transition: 160ms;
+	cursor: pointer;
+}
+
+.info {
+	cursor: pointer;
+	font-size: smaller;
+	text-decoration: none;
+	color: #ba9501;
+}
+
+.no-click {
+	pointer-events: none;
+}
+
+.hide-element {
+	display: none;
 }

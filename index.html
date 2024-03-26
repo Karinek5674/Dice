@@ -10,7 +10,7 @@
     <title>Dice</title>
 	</head>
   <body>
-		<div class="hracova-strana js-hrac1">
+		<div class="hracova-strana js-hrac1 no-click">
 			<div class="hracova-tlacitka">
 				<button class="roll js-roll">Roll the dice</button>
 				<!--<button class="end js-end">End game</button>-->
@@ -26,13 +26,13 @@
 				<div class="kostka6"><img class="kostka-img" src="./dices/empty.svg"></div>
 			</div>
 			<div class="hracovo-info">
-				<p>Total: <span class="js-total-score">0</span> / <span>cislo</span></p>
+				<p>Total: <span class="js-total-score">0</span> / <span class="js-max-score"></span></p>
 				<p>Round: <span class="js-def-score">0</span></p>
 				<p>Selected: <span class="js-selected">0</span></p>
 			</div>
 		</div>
 
-		<div class="hracova-strana js-hrac2">
+		<div class="hracova-strana js-hrac2 no-click">
 			<div class="hracova-tlacitka">
 				<button class="roll js-roll2">Roll the dice</button>
 				<!--<button class="end js-end2">End game</button>-->
@@ -48,7 +48,7 @@
 				<div class="kostka62"><img class="kostka-img" src="./dices/empty.svg"></div>
 			</div>
 			<div class="hracovo-info">
-				<p>Total: <span class="js-total-score2">0</span> / <span>cislo</span></p>
+				<p>Total: <span class="js-total-score2">0</span> / <span class="js-max-score2"></span></p>
 				<p>Round: <span class="js-def-score2">0</span></p>
 				<p>Selected: <span class="js-selected2">0</span></p>
 			</div>
@@ -56,6 +56,19 @@
 		<div class="smula-hide js-smula">
 			<h1>Unlucky</h1>
 			<p>None of the dice you rolled have any value.</p>
+		</div>
+
+		<div class="choose-score">
+			<h2>Choose the winning score for this game. <span class="info js-score-info">&#9432;</span></h2>
+			<div class="choose-score-input">
+				<input id="js-max-score-input" type="number">
+				<button class="confirm-score js-confirm-score">Confirm</button>
+			</div>
+		</div>
+
+		<div class="win-screen js-win-screen hide-element">
+			<h2 class="js-player-win"></h2>
+			<button class="new-game" onclick="location.reload();">New game</button>
 		</div>
     <script type="module" src="functions.js"></script>
     <script type="module" src="diceFunc.js"></script>

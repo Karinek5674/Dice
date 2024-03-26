@@ -392,6 +392,7 @@ document.querySelector('.js-end-round').addEventListener('click', () => {
 		resetDivs();
 		numberOfSelectedDices = 0;
 		hracuvTah1 = false;
+		checkVyhra();
 	}
 })
 //END tlačítko2
@@ -410,6 +411,7 @@ document.querySelector('.js-end-round2').addEventListener('click', () => {
 		resetDivs2();
 		numberOfSelectedDices = 0;
 		hracuvTah2 = false;
+		checkVyhra();
 	}
 })
 
@@ -826,6 +828,20 @@ function checkSmula() {
 	}
 }
 
+const winScreen = document.querySelector('.js-win-screen'); 
+const winScreenNapis = document.querySelector('.js-player-win')
+function checkVyhra() {
+	if (totalScore >= maxScore) {
+		winScreen.classList.remove('hide-element');
+		winScreenNapis.innerHTML = 'Left player won.'
+	} else if (totalScore2 >= maxScore) {
+		winScreen.classList.remove('hide-element');
+		winScreenNapis.innerHTML = 'Right player won.'
+	} else {
+		console.log('zatim nikdo nevyhral')
+	}
+}
+
 function resetPoctyKostek() {
 	kostka1Selected = 0;
 	kostka2Selected = 0;
@@ -835,4 +851,27 @@ function resetPoctyKostek() {
 	kostka6Selected = 0;
 	console.log(kostka1Selected, kostka2Selected, kostka3Selected, kostka4Selected, kostka5Selected, kostka6Selected);
 }
-//HRAC 2
+
+let maxScore = 0;
+const strana1 = document.querySelector('.js-hrac1');
+const strana2 = document.querySelector('.js-hrac2');
+const maxScoreDiv = document.querySelector('.choose-score');
+const maxScoreHTML = document.querySelector('.js-max-score');
+const maxScoreHTML2 = document.querySelector('.js-max-score2');
+const confirmScoreButton = document.querySelector('.js-confirm-score');
+const maxScoreInput = document.querySelector('#js-max-score-input');
+
+function confirmScore () {
+	maxScore = maxScoreInput.value;
+	if (maxScore >= 50) {
+		maxScoreHTML.innerHTML = maxScore;
+		maxScoreHTML2.innerHTML = maxScore;
+		maxScoreDiv.classList.add('hide-element');
+		strana1.classList.remove('no-click');
+		strana2.classList.remove('no-click');
+	} else {
+		alert('Score must be 50 or higher.')
+	}
+}
+
+confirmScoreButton.addEventListener('click', confirmScore);
