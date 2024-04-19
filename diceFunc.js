@@ -1,5 +1,6 @@
 import {maxPoints} from "./functions.js";
 //maxPoints();
+console.log("just testing")
 
 //fotky kostek
 const dicePic1 = `<img class="dice1 selectableDice" data-value="1" src="./dices/1.svg">`;
