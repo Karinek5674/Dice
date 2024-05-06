@@ -1,0 +1,61 @@
+body {
+	font-family: 'Oxygen', sans-serif;
+	display: flex;
+	background-color: #1f1f1f;
+	margin: 0em;
+	overflow: hidden;
+}
+
+.screen { 
+	display: flex;
+	width: 100%;
+}
+
+.firstHalf,
+.secondHalf {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	padding: 5rem;
+}
+
+.firstHalf div,
+.secondHalf div {
+	height: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.firstHalf:hover,
+.secondHalf:hover {
+	background-color: #806600;
+	transition: 400ms;
+}
+
+button {
+	font-family: 'Oxygen', sans-serif;
+	font-weight: medium;
+	background-color: black;
+	color: #806600;
+	border: none;
+	padding: 1em;
+	width: 10rem;
+	border-radius: 6px;
+	transition: 160ms;
+	margin: 1rem 0px;
+	cursor: pointer;
+	box-shadow: 0px 0px 10px black;
+}
+
+button:hover {
+	scale: 107%;
+}
+
+button:active {
+	color: #ba9501;
+}

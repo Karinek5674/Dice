@@ -1,5 +1,0 @@
-function maxPoints() {
-	
-}
-
-export {maxPoints};

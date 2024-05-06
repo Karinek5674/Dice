@@ -1,7 +1,3 @@
-import {maxPoints} from "./functions.js";
-//maxPoints();
-console.log("just testing")
-
 //fotky kostek
 const dicePic1 = `<img class="dice1 selectableDice" data-value="1" src="./dices/1.svg">`;
 const dicePic2 = `<img class="dice2 selectableDice" data-value="2" src="./dices/2.svg">`;
@@ -312,29 +308,29 @@ let numberOfSelectedDices = 0;
 const rollButton = document.querySelector('.js-roll')
 rollButton.addEventListener('click', () => {
 	if (hracuvTah1 == true) {
-		alert('You already rolled, you cannot roll again.')
+		alert('Už jsi házel, nemůžeš házet znovu.')
 	} else if (hracuvTah2 == false) {
 		generujKostkyAJejichFunkce()
 	} else {
-		alert('Wait for the other player to finish their game.')
+		alert('Vyčkej, než druhý hráč dokončí svůj tah.')
 	}
 })
 
 const rollButton2 = document.querySelector('.js-roll2')
 rollButton2.addEventListener('click', () => {
 		if (hracuvTah2 == true) {
-			alert('You already rolled, you cannot roll again.')
+			alert('Už jsi házel, nemůžeš házet znovu.')
 		} else if (hracuvTah1 == false) {
 			generujKostkyAJejichFunkce2()
 		} else {
-			alert('Wait for the other player to finish their game.')
+			alert('Vyčkej, než druhý hráč dokončí svůj tah.')
 		}
 })
 
 //CONTINUE tlačítko 
 document.querySelector('.js-continue').addEventListener('click', () => {
 	if (selectedScore == 0) {
-		alert('Select dices with value to continue round.');
+		alert('Musíš vybrat kostky s hodnotou.');
 	} else if (numberOfSelectedDices < 6) {
 		kostky = [];
 		roundScore += selectedScore;
@@ -357,7 +353,7 @@ document.querySelector('.js-continue').addEventListener('click', () => {
 //CONTINUE tlačítko2
 document.querySelector('.js-continue2').addEventListener('click', () => {
 	if (selectedScore2 == 0) {
-		alert('Select dices with value to continue round.');
+		alert('Musíš vybrat kostky s hodnotou.');
 	} else if (numberOfSelectedDices < 6) {
 		kostky = [];
 		roundScore2 += selectedScore2;
@@ -380,7 +376,7 @@ document.querySelector('.js-continue2').addEventListener('click', () => {
 //END tlačítko
 document.querySelector('.js-end-round').addEventListener('click', () => {
 	if (selectedScore == 0) {
-		alert('Select dices with value to end round.');
+		alert('Musíš vybrat kostky s hodnotou.');
 	} else {
 		totalScore = totalScore + selectedScore + roundScore;
 		selectedScore = 0;
@@ -399,7 +395,7 @@ document.querySelector('.js-end-round').addEventListener('click', () => {
 //END tlačítko2
 document.querySelector('.js-end-round2').addEventListener('click', () => {
 	if (selectedScore2 == 0) {
-		alert('Select dices with value to end round.');
+		alert('Musíš vybrat kostky s hodnotou.');
 	} else {
 		totalScore2 = totalScore2 + selectedScore2 + roundScore2;
 		selectedScore2 = 0;
@@ -834,10 +830,10 @@ const winScreenNapis = document.querySelector('.js-player-win')
 function checkVyhra() {
 	if (totalScore >= maxScore) {
 		winScreen.classList.remove('hide-element');
-		winScreenNapis.innerHTML = 'Left player won.'
+		winScreenNapis.innerHTML = 'Levý hráč vyhrál.'
 	} else if (totalScore2 >= maxScore) {
 		winScreen.classList.remove('hide-element');
-		winScreenNapis.innerHTML = 'Right player won.'
+		winScreenNapis.innerHTML = 'Pravý hráč vyhrál.'
 	} else {
 		console.log('zatim nikdo nevyhral')
 	}
@@ -871,8 +867,23 @@ function confirmScore () {
 		strana1.classList.remove('no-click');
 		strana2.classList.remove('no-click');
 	} else {
-		alert('Score must be 50 or higher.')
+		alert('Skóre musí být 50 nebo víc.')
 	}
 }
 
 confirmScoreButton.addEventListener('click', confirmScore);
+
+//pravidla
+const pravidlaButton = document.querySelector('.info');
+const pravidlaDiv = document.querySelector('.rules');
+const xButton = document.querySelector('.xbtn');
+
+pravidlaButton.addEventListener('click', () => {
+	if (pravidlaDiv.classList.contains('hide-element')) {
+		pravidlaDiv.classList.remove('hide-element');
+	}
+})
+
+xButton.addEventListener('click', () => {
+	pravidlaDiv.classList.add('hide-element');
+})

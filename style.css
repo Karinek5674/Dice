@@ -1,3 +1,11 @@
+::-moz-selection { 
+	background: rgb(197, 167, 111);
+}
+
+::selection {
+	background: rgb(197, 167, 111);
+}
+
 body {
 	font-family: 'Oxygen', sans-serif;
 	display: flex;
@@ -28,6 +36,7 @@ body {
 	border-radius: 6px;
 	transition: 160ms;
 	cursor: pointer;
+	box-shadow: 0px 0px 10px black;
 }
 
 .hracova-tlacitka button:hover,
@@ -110,6 +119,13 @@ body {
 
 .smula-hide {
 	display: none;
+	-webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  pointer-events: none;
 }
 
 .smula-show,
@@ -130,6 +146,57 @@ body {
 	background-color: black;
 	color: #806600;
 	transition: 200ms;
+}
+
+.rules {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	border-radius: 30px;
+	transform: translate(-50%, -40%);
+	height: 40rem;
+	width: 68rem;
+	border: solid 1px #ba9501;
+	background-color: black;
+	color: #806600;
+	transition: 200ms;
+	overflow: auto;
+}
+
+.xbtn {
+	position: absolute;
+	left: 15px;
+	top: 15px;
+	width: 3rem;
+	cursor: pointer;
+	transition: 100ms;
+}
+
+.xbtn:hover,
+.info:hover {
+	scale: 110%;
+}
+
+.xbtn:active,
+.info:active {
+	opacity: 90%;
+}
+
+.rules-scnd {
+	display: flex;
+	justify-content: space-around;
+	width: 90%;
+}
+
+.rules-scnd div {
+	width: 45%;
+}
+
+.rulesNadpis {
+	width: 90%;
 }
 
 .choose-score input {
@@ -165,6 +232,14 @@ body {
 	font-size: smaller;
 	text-decoration: none;
 	color: #ba9501;
+	width: 30px;
+	height: 30px;
+	transition: 100ms;
+	-webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .no-click {
@@ -173,4 +248,22 @@ body {
 
 .hide-element {
 	display: none;
+	-webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  pointer-events: none;
 }
+
+.info-text {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*
+- na mensi tablety breakpoint 1350px
+
+*/
