@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="computerScreen.css">
+		<link rel="icon" href="./dices/5.svg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Kostky - proti počítači</title>
+	</head>
+  <body>
+		<div class="hracova-strana js-hrac1 no-click blurred">
+			<div class="hracova-tlacitka">
+				<button class="roll js-roll">Hod kostkami</button>
+				<button class="end js-end">Konec hry</button>
+				<button class="continue js-continue">Zaskóruj a pokračuj ve hře</button>
+				<button class="end-round js-end-round">Zaskóruj a ukonči kolo</button>
+			</div>
+			<div class="hracovy-kostky">
+				<div class="kostka1"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka2"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka3"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka4"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka5"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka6"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+			<div class="hracovo-info">
+				<p>Celkem: <span class="js-total-score">0</span> / <span class="js-max-score"></span></p>
+				<p>Kolo: <span class="js-def-score">0</span></p>
+				<p>Vybráno: <span class="js-selected">0</span></p>
+			</div>
+		</div>
+
+		<div class="hracova-strana js-hrac2 no-click blurred">
+			<div class="hracovo-info">
+				<p>Celkem: <span class="js-total-score2">0</span> / <span class="js-max-score2"></span></p>
+				<p>Kolo: <span class="js-def-score2">0</span></p>
+				<p>Vybráno: <span class="js-selected2">0</span></p>
+			</div>
+			<div class="hracovy-kostky">
+				<div class="kostka12"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka22"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka32"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka42"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka52"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka62"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+		</div>
+		<div class="smula-hide js-smula">
+			<h1>Nevyšlo to</h1>
+			<p>Žádná z kostek, které jsi hodil, nemá hodnotu.</p>
+		</div>
+
+		<div class="choose-score">
+			<h2>Vyber, do jakého skóre se bude hrát.</h2>
+			<div class="choose-score-input">
+				<input id="js-max-score-input" type="number">
+				<button class="confirm-score js-confirm-score">Potvrdit</button>
+			</div>
+		</div>
+
+
+
+		<div class="win-screen js-win-screen hide-element">
+			<h2 class="js-player-win"></h2>
+			<button class="new-game" onclick="location.reload();">Nová hra</button>
+		</div>
+    <script type="module" src="computerScreen.js"></script>
+	</body>
+</html>

@@ -1,0 +1,127 @@
+body {
+	font-family: 'Oxygen', sans-serif;
+	display: flex;
+	background-color: #1f1f1f;
+	margin: 0em;
+	overflow: hidden;
+}
+
+p {
+	font-size: 1rem;
+}
+
+::-moz-selection { 
+	background: rgb(197, 167, 111);
+}
+
+::selection {
+	background: rgb(197, 167, 111);
+}
+
+.screen { 
+	display: flex;
+	width: 100%;
+}
+
+.firstHalf,
+.secondHalf {
+	display: flex;
+	flex-direction: column;
+	height: 83.3vh;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	padding: 5rem;
+	box-shadow: inset black 0px 0px 8px;
+}
+
+.firstHalf div,
+.secondHalf div {
+	height: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.firstHalf:hover,
+.secondHalf:hover {
+	background-color: #806600;
+	transition: 400ms;
+}
+
+button {
+	font-family: 'Oxygen', sans-serif;
+	font-weight: medium;
+	background-color: black;
+	color: #806600;
+	border: none;
+	padding: 1em;
+	width: 10rem;
+	border-radius: 6px;
+	transition: 160ms;
+	margin: 1rem 0px;
+	cursor: pointer;
+	box-shadow: 0px 0px 10px black;
+}
+
+button:hover {
+	scale: 107%;
+}
+
+button:active {
+	color: #ba9501;
+}
+
+.rules-scnd {
+	display: flex;
+	justify-content: space-around;
+	width: 90%;
+}
+
+.rules-scnd div {
+	width: 45%;
+}
+
+.rulesNadpis {
+	width: 90%;
+}
+
+.rules {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	border-radius: 14px;
+	transform: translate(-50%, -40%);
+	height: 40rem;
+	width: 68rem;
+	border: none;
+	background-color: #806600;
+	color: black;
+	transition: 200ms;
+	overflow: auto;
+	box-shadow: 0px 0px 30px black;
+	font-size: 1.2rem;
+}
+
+.xbtn {
+	position: absolute;
+	left: 14px;
+	top: 0px;
+	cursor: pointer;
+	width: 5rem;
+}
+
+.hide-element {
+	display: none;
+	-webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  pointer-events: none;
+}

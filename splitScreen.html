@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="splitScreen.css">
+		<link rel="icon" href="./dices/5.svg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Kostky - splitscreen</title>
+	</head>
+	<body>
+		<div class="hracova-strana js-hrac1 no-click blurred">
+			<div class="hracova-tlacitka">
+				<button class="roll js-roll">Hod kostkami</button>
+				<button class="end js-end">Konec hry</button>
+				<button class="continue js-continue">Zaskóruj a pokračuj ve hře</button>
+				<button class="end-round js-end-round">Zaskóruj a ukonči kolo</button>
+			</div>
+			<div class="hracovy-kostky">
+				<div class="kostka1"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka2"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka3"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka4"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka5"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka6"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+			<div class="hracovo-info">
+				<p>Celkem: <span class="js-total-score">0</span> / <span class="js-max-score"></span></p>
+				<p>Kolo: <span class="js-def-score">0</span></p>
+				<p>Vybráno: <span class="js-selected">0</span></p>
+			</div>
+		</div>
+
+		<div class="hracova-strana js-hrac2 no-click blurred">
+			<div class="hracova-tlacitka">
+				<button class="roll js-roll2">Hod kostkami</button>
+				<button class="end js-end2">Konec hry</button>
+				<button class="continue js-continue2">Zaskóruj a pokračuj v kole</button>
+				<button class="end-round js-end-round2">Zaskóruj a ukonči kolo</button>
+			</div>
+			<div class="hracovy-kostky">
+				<div class="kostka12"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka22"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka32"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka42"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka52"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka62"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+			<div class="hracovo-info">
+				<p>Celkem: <span class="js-total-score2">0</span> / <span class="js-max-score2"></span></p>
+				<p>Kolo: <span class="js-def-score2">0</span></p>
+				<p>Vybráno: <span class="js-selected2">0</span></p>
+			</div>
+		</div>
+		<div class="smula-hide js-smula">
+			<h1>Nevyšlo to</h1>
+			<p>Žádná z kostek, které jsi hodil, nemá hodnotu.</p>
+		</div>
+
+		<div class="choose-score">
+			<h2>Vyber, do jakého skóre se bude hrát.</h2>
+			<div class="choose-score-input">
+				<input id="js-max-score-input" type="number">
+				<button class="confirm-score js-confirm-score">Potvrdit</button>
+			</div>
+		</div>
+
+
+
+		<div class="win-screen js-win-screen hide-element">
+			<h2 class="js-player-win"></h2>
+			<button class="new-game" onclick="location.reload();">Nová hra</button>
+		</div>
+    <script type="module" src="splitScreen.js"></script>
+	</body>
+</html>
+
+<!--
+	Hra
+
+	Auto souper
+	------
+- nefungující soupeř, který bude hrát proti hráči automaticky 
+
+	LocalStorage
+	------------
+- nefungující ukládání hodnot do paměti, aby se hráč mohl do hry vrátit a pokračovat
+-->
+
+<!--
+	  <body>
+		<div class="hracova-strana js-hrac1 no-click">
+			<div class="hracova-tlacitka">
+				<button class="roll js-roll">Hod kostkami</button>
+				<button class="end js-end">Konec hry</button>
+				<button class="continue js-continue">Zaskóruj a pokračuj ve hře</button>
+				<button class="end-round js-end-round">Zaskóruj a ukonči kolo</button>
+			</div>
+			<div class="hracovy-kostky">
+				<div class="kostka1"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka2"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka3"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka4"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka5"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka6"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+			<div class="hracovo-info">
+				<p>Celkem: <span class="js-total-score">0</span> / <span class="js-max-score"></span></p>
+				<p>Kolo: <span class="js-def-score">0</span></p>
+				<p>Vybráno: <span class="js-selected">0</span></p>
+			</div>
+		</div>
+
+		<div class="hracova-strana js-hrac2 no-click">
+			<div class="hracova-tlacitka">
+				<button class="roll js-roll2">Hod kostkami</button>
+				<button class="end js-end2">Konec hry</button>
+				<button class="continue js-continue2">Zaskóruj a pokračuj v kole</button>
+				<button class="end-round js-end-round2">Zaskóruj a ukonči kolo</button>
+			</div>
+			<div class="hracovy-kostky">
+				<div class="kostka12"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka22"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka32"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka42"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka52"><img class="kostka-img" src="./dices/empty.svg"></div>
+				<div class="kostka62"><img class="kostka-img" src="./dices/empty.svg"></div>
+			</div>
+			<div class="hracovo-info">
+				<p>Celkem: <span class="js-total-score2">0</span> / <span class="js-max-score2"></span></p>
+				<p>Kolo: <span class="js-def-score2">0</span></p>
+				<p>Vybráno: <span class="js-selected2">0</span></p>
+			</div>
+		</div>
+		<div class="smula-hide js-smula">
+			<h1>Nevyšlo to</h1>
+			<p>Žádná z kostek, které jsi hodil, nemá hodnotu.</p>
+		</div>
+
+		<div class="choose-score">
+			<h2>Vyber, do jakého skóre se bude hrát. <img class="info" src="./dices/ibutton.png"></h2>
+			<div class="choose-score-input">
+				<input id="js-max-score-input" type="number">
+				<button class="confirm-score js-confirm-score">Potvrdit</button>
+			</div>
+		</div>
+
+		<div class="rules hide-element">
+			<img class="xbtn" src="./dices/xbutton.png">
+			<h1>Pravidla</h1>
+			<ol>
+				<li>Hráči si vyberou do kolika bodů chtějí hrát.</li>
+				<li>Následně se rozhodnou, kdo bude házet první. </li>
+				<li>Každý hráč hodí kostkami a vybere si z nich ty, se kterými chce skórovat.</li>
+				<li>Kostky 1 a 5 je možno držet v počtu 1 a vyšší. Kostky 2,3,4,6 je nutno držet v počtu 3 a vyšší. </li>
+				<li>Hra pokračuje střídáním tahů mezi hráči dokud jeden z nich nedosáhne stanovené hodnoty (nebo vyšší) bodů, které byly na začátku hry určeny. Hráč, který tohoto cíle dosáhne jako první hru vyhrává. </li>
+			</ol>
+			<div class="rulesNadpis">
+				<h3>Veškeré možné hodnoty:</h3>
+			</div>
+			<div class="rules-scnd">
+				<div>
+						<ul>
+							<li>Kostka 1:
+								<ul>
+									<li>1: 100</li>
+									<li>2: 200</li>
+									<li>3: 1000</li>
+									<li>4: 2000</li>
+									<li>5: 4000</li>
+									<li>6: 8000</li>
+								</ul>
+							</li>
+							<li>Kostka 2:
+								<ul>
+									<li>3: 200</li>
+									<li>4: 400</li>
+									<li>5: 800</li>
+									<li>6: 1600</li>
+								</ul>
+							</li>
+							<li>Kostka 3:
+								<ul>
+									<li>3: 300</li>
+									<li>4: 600</li>
+									<li>5: 1200</li>
+									<li>6: 2400</li>
+								</ul>
+							</li>
+						</ul>
+				</div>
+				
+				<div>
+					<ul>
+						<li>Kostka 4:
+							<ul>
+								<li>3: 400</li>
+								<li>4: 800</li>
+								<li>5: 1600</li>
+								<li>6: 3200</li>
+							</ul>
+						</li>
+						<li>Kostka 5:
+							<ul>
+								<li>1: 50</li>
+								<li>2: 100</li>
+								<li>3: 500</li>
+								<li>4: 1000</li>
+								<li>5: 2000</li>
+								<li>6: 4000</li>
+							</ul>
+						</li>
+						<li>Kostka 6:
+							<ul>
+								<li>3: 600</li>
+								<li>4: 1200</li>
+								<li>5: 2400</li>
+								<li>6: 4800</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<ul>
+						<li>Postupky</li>
+							<ul>
+								<li>1-6: 1500</li>
+								<li>2-6: 750</li>
+							</ul>
+					</ul>
+					<p>
+						Kombinace, které nejsou specificky přiřazeny, mají hodnotu 0. Pokud se spojí kostka/kostky s hodnotou s kostkou/kostkami bez hodnoty, automaticky je skóre 0 (např. při vybrání 1x kostky 1 a 2x kostky 3 je skóre 0, ale při vybrání pouze kostky 1 je skóre 100).
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="win-screen js-win-screen hide-element">
+			<h2 class="js-player-win"></h2>
+			<button class="new-game" onclick="location.reload();">Nová hra</button>
+		</div>
+    <script type="module" src="splitScreen.js"></script>
+  </body>
+-->
